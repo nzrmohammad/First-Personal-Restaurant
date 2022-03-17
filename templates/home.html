@@ -8,11 +8,6 @@
         <meta charset="utf-8">
         <meta name="author" content="Sana Zarei">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
-        <!-- favicon -->
-        <link rel="shortcut icon" href="{% static 'images/favicon.png' %}">
-        <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon-57x57.png' %}">
-        <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon-72x72.png' %}">
-        <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon-114x114.png' %}">
         <!-- font awesome -->
         <link href="{% static 'css/all.min.css' %}" rel="stylesheet">
         <!-- bootstrap -->
@@ -519,19 +514,9 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-12">
-                            <div class="select-style input-round big-input">
-                                <select name="table_number" required="True">
-                                    <option selected="selected" value="">Select Food</option>
-                                    {% for item in food_menu %}
-                                    <option value="{{ item.title }} - {{ item.price }}$">{{ item.title }} - {{ item.price }}$</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                        </div>
                         <div class="col-md-12 col-sm-12 text-center">
                             <div class="col-sm-12 no-padding-right padding-two">
-                                <input id="reservationform-button" type="submit" class="btn btn-black btn-medium btn-round no-margin-bottom no-margin-top" value="send message" name="send-message1">
+                                <input id="reservationform-button" onclick="return alert('Reservation Submit')" type="submit" class="btn btn-black btn-medium btn-round no-margin-bottom no-margin-top" value="send message" name="send-message1">
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12 text-center">
@@ -733,14 +718,10 @@
                             <div class="col-md-6 col-sm-12">
                                 <input name="name2" type="text" placeholder="Enter Your Name {Required}" required="True"/>
                                 <input name="subject" type="text" placeholder="Enter Your Subject {Required}" required="True"/>
-                                <input name="email" type="text" placeholder="Enter Your Email {Required}" required="True"/>
-                                {% comment %} {{ form.name }}
-                                {{ form.subject }}
-                                {{ form.email }} {% endcomment %}
+                                <input name="email" type="email" placeholder="Enter Your Email {Required}" required="True"/>
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <textarea name="message" placeholder="Enter Your Message {Required}" required="True" cols="40" rows="10"></textarea>
-                                {% comment %} {{ form.message }} {% endcomment %}
                             </div>
                             <div class="col-md-12 col-sm-12">
                                 <div class="col-md-3 col-sm-6 f-right no-padding-right">
@@ -864,12 +845,12 @@
                     success: sucessHandler,
                     error: errorHandler,
                 });
+                document.getElementById("reservationform").reset();
             }
     
             function sucessHandler(data) {
                 if (data.msg === "Success") {
                     alert("Success");
-                    $("#reservationform")[0].reset();
                 }
             }
     

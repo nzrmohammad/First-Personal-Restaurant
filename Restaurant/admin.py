@@ -73,11 +73,11 @@ class ContactUsAdmin(admin.ModelAdmin):
     search_fields = ['name']
     readonly_fields = ['name','date','time','count','table_number']
 
-    def has_add_permission(self, request):
-        return False
+    # def has_add_permission(self, request):
+    #     return False
 
-    def has_delete_permission(self, request, obj=None):
-        return False
+    # def has_delete_permission(self, request, obj=None):
+    #     return False
 
 # 7 - Service Page # 7 - Service Page # 7 - Service Page # 7 - Service Page # 7 - Service Page
 @admin.register(Service)
@@ -135,11 +135,11 @@ class ContactUsAdmin(admin.ModelAdmin):
     search_fields = ['name','subject','message']
     readonly_fields = ['name','subject','email','message']
 
-    def has_add_permission(self, request):
-        return False
+    # def has_add_permission(self, request):
+    #     return False
 
-    def has_delete_permission(self, request, obj=None):
-        return False
+    # def has_delete_permission(self, request, obj=None):
+    #     return False
 
 # 12 - Contact # 12 - Contact # 12 - Contact # 12 - Contact # 12 - Contact # 12 - Contact
 

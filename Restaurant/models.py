@@ -119,6 +119,7 @@ class Reservation_Received(models.Model):
     class Meta:
         verbose_name = 'Reservation_Received'
         verbose_name_plural = '06 - Reservation_Received'
+        unique_together = ('date', 'time', 'table_number')
 
 # 7 - Service Page 7 - Service Page 7 - Service Page 7 - Service Page 7 - Service Page
 class Service(models.Model):
