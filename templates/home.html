@@ -519,16 +519,6 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-12">
-                            <div class="select-style input-round big-input">
-                                <select name="table_number" required="True">
-                                    <option selected="selected" value="">Select Food</option>
-                                    {% for item in food_menu %}
-                                    <option value="{{ item.title }} - {{ item.price }}$">{{ item.title }} - {{ item.price }}$</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                        </div>
                         <div class="col-md-12 col-sm-12 text-center">
                             <div class="col-sm-12 no-padding-right padding-two">
                                 <input id="reservationform-button" type="submit" class="btn btn-black btn-medium btn-round no-margin-bottom no-margin-top" value="send message" name="send-message1">
@@ -731,16 +721,16 @@
                                 <div class="col-md-12 col-sm-12"><div id="success"></div></div>
                             </div>
                             <div class="col-md-6 col-sm-12">
-                                <input name="name2" type="text" placeholder="Enter Your Name {Required}" required="True"/>
+                                {% comment %} <input name="name2" type="text" placeholder="Enter Your Name {Required}" required="True"/>
                                 <input name="subject" type="text" placeholder="Enter Your Subject {Required}" required="True"/>
-                                <input name="email" type="text" placeholder="Enter Your Email {Required}" required="True"/>
-                                {% comment %} {{ form.name }}
-                                {{ form.subject }}
-                                {{ form.email }} {% endcomment %}
+                                <input name="email" type="text" placeholder="Enter Your Email {Required}" required="True"/> {% endcomment %}
+                                {{ form2.name2 }}
+                                {{ form2.subject }}
+                                {{ form2.email }}
                             </div>
                             <div class="col-md-6 col-sm-12">
-                                <textarea name="message" placeholder="Enter Your Message {Required}" required="True" cols="40" rows="10"></textarea>
-                                {% comment %} {{ form.message }} {% endcomment %}
+                                {% comment %} <textarea name="message" placeholder="Enter Your Message {Required}" required="True" cols="40" rows="10"></textarea> {% endcomment %}
+                                {{ form2.message }}
                             </div>
                             <div class="col-md-12 col-sm-12">
                                 <div class="col-md-3 col-sm-6 f-right no-padding-right">
@@ -851,8 +841,8 @@
         <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 
         <script>
-            const form = document.getElementById("reservationform");
-            form.addEventListener("submit", submitHandler);
+            const form1 = document.getElementById("reservationform");
+            form1.addEventListener("submit", submitHandler);
     
             function submitHandler(event) {
                 event.preventDefault();
@@ -861,20 +851,32 @@
                     url: "{% url 'Restaurant:home' %}",
                     data: $("#reservationform").serialize(),
                     dataType: "json",
-                    success: sucessHandler,
-                    error: errorHandler,
+                    success: function sucessHandler(data)
+                    {
+                        if (data.msg1 === "Success") {
+                            alert("Your Reservation is Submitted.");
+                            document.getElementById("reservationform").reset();
+                        }
+                    },
+                    error: function errorHandler(data)
+                    {
+                        if (data.msg1 === "Error") 
+                        {
+                            alert("Error");
+                        }
+                    },
                 });
             }
     
             function sucessHandler(data) {
-                if (data.msg === "Success") {
+                if (data.msg1 === "Success") {
                     alert("Success");
-                    $("#reservationform")[0].reset();
+                    
                 }
             }
     
             function errorHandler(data) {
-                if (data.msg === "Error") {
+                if (data.msg1 === "Error") {
                     alert("Error");
                 }
             }
@@ -897,14 +899,14 @@
             }
     
             function sucessHandler(data) {
-                if (data.msg === "Success") {
+                if (data.msg2 === "Success") {
                     alert("Your Message sent");
                     $("#contactusform")[0].reset();
                 }
             }
     
             function errorHandler(data) {
-                if (data.msg === "Error") {
+                if (data.msg2 === "Error") {
                     alert("Error");
                 }
             }

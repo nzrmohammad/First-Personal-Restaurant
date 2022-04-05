@@ -73,11 +73,11 @@ class ContactUsAdmin(admin.ModelAdmin):
     search_fields = ['name']
     readonly_fields = ['name','date','time','count','table_number']
 
-    def has_add_permission(self, request):
-        return False
+    # def has_add_permission(self, request):
+    #     return False
 
-    def has_delete_permission(self, request, obj=None):
-        return False
+    # def has_delete_permission(self, request, obj=None):
+    #     return False
 
 # 7 - Service Page # 7 - Service Page # 7 - Service Page # 7 - Service Page # 7 - Service Page
 @admin.register(Service)
@@ -128,18 +128,18 @@ class TestimonialAdmin(admin.ModelAdmin):
 
 @admin.register(ContactUs)
 class ContactUsAdmin(admin.ModelAdmin):
-    list_display = ['name','email','subject','is_read']
-    list_display_links = ['name']
+    list_display = ['name2','email','subject','is_read']
+    list_display_links = ['name2']
     list_filter = ['is_read']
     list_editable = ['is_read']
-    search_fields = ['name','subject','message']
-    readonly_fields = ['name','subject','email','message']
+    search_fields = ['name2','subject','message']
+    readonly_fields = ['name2','subject','email','message']
 
-    def has_add_permission(self, request):
-        return False
+    # def has_add_permission(self, request):
+    #     return False
 
-    def has_delete_permission(self, request, obj=None):
-        return False
+    # def has_delete_permission(self, request, obj=None):
+    #     return False
 
 # 12 - Contact # 12 - Contact # 12 - Contact # 12 - Contact # 12 - Contact # 12 - Contact
 

@@ -119,6 +119,8 @@ class Reservation_Received(models.Model):
     class Meta:
         verbose_name = 'Reservation_Received'
         verbose_name_plural = '06 - Reservation_Received'
+        # unique_together = ('date', 'time', 'table_number',)
+        constraints = [models.UniqueConstraint(fields=['date', 'time', 'table_number'], name='unique_reserve')]
 
 # 7 - Service Page 7 - Service Page 7 - Service Page 7 - Service Page 7 - Service Page
 class Service(models.Model):
@@ -186,10 +188,10 @@ class Testimonial(models.Model):
 
 # 12 - ContactUs Page 12 - ContactUs Page 12 - ContactUs Page 12 - ContactUs Page 12 - ContactUs Page
 class ContactUs(models.Model):
-    name = models.CharField(max_length=35)
+    name2 = models.CharField(verbose_name="name",max_length=35)
     subject = models.CharField(max_length=30)
     email = models.EmailField(max_length=35)
-    message = models.TextField(max_length=35)
+    message = models.TextField(max_length=250)
     is_read = models.BooleanField(default=False , verbose_name='Read / Unread')
 
     def __str__(self):
