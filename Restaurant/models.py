@@ -119,8 +119,12 @@ class Reservation_Received(models.Model):
     class Meta:
         verbose_name = 'Reservation_Received'
         verbose_name_plural = '06 - Reservation_Received'
+<<<<<<< HEAD
         # unique_together = ('date', 'time', 'table_number',)
         constraints = [models.UniqueConstraint(fields=['date', 'time', 'table_number'], name='unique_reserve')]
+=======
+        unique_together = ('date', 'time', 'table_number')
+>>>>>>> 2a9f08caae49ee08a09ed70e8efb936b5683a185
 
 # 7 - Service Page 7 - Service Page 7 - Service Page 7 - Service Page 7 - Service Page
 class Service(models.Model):

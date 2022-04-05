@@ -1,9 +1,13 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from .models import About,Special_Dishes,Category,Food_Menu,Reservation_Date,Reservation_Time,Reservation_Count,Reservation_Table_Number,Reservation_Received,Service,Popular_Dishes,Event,Event_Bottom,Testimonial,ContactUs,Contact,Profile
+<<<<<<< HEAD
 from django.db import IntegrityError
 from .forms import ContactUsForm,ReservationForm
 from django.contrib import messages
+=======
+
+>>>>>>> 2a9f08caae49ee08a09ed70e8efb936b5683a185
 
 def is_ajax(request):
     return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
@@ -40,8 +44,11 @@ def home(request):
         'event_bottom':event_bottom,
         'testimonial':testimonial,
         'contact':contact,
+<<<<<<< HEAD
         'form1':ReservationForm,
         'form2':ContactUsForm,
+=======
+>>>>>>> 2a9f08caae49ee08a09ed70e8efb936b5683a185
         'profile':profile
     }
 
@@ -54,7 +61,10 @@ def home(request):
             reservation.count = request.POST.get('count')
             reservation.table_number = request.POST.get('table_number')
             reservation.save()
+<<<<<<< HEAD
             return JsonResponse({'msg1':'Success'})
+=======
+>>>>>>> 2a9f08caae49ee08a09ed70e8efb936b5683a185
 
         elif request.POST.get('name2'):
             contactus = ContactUs()
@@ -63,6 +73,13 @@ def home(request):
             contactus.email = request.POST.get('email')
             contactus.message = request.POST.get('message')
             contactus.save()
+<<<<<<< HEAD
             return JsonResponse({'msg2':'Success'})
     else:
         return render(request, 'home.html',context)
+=======
+            return JsonResponse({'msg':'Success'})
+            
+    return render(request,'home.html',context)
+
+>>>>>>> 2a9f08caae49ee08a09ed70e8efb936b5683a185
